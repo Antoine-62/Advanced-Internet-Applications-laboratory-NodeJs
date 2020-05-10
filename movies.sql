@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `nodejsdata`
 --
-CREATE DATABASE nodejsdata2; 
-USE nodejsdata2; 
+CREATE DATABASE nodejsdata; 
+USE nodejsdata; 
 -- --------------------------------------------------------
 
 --
