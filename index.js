@@ -10,11 +10,12 @@ const { v4: uuidv4 } = require('uuid');
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(flash())
+app.use(flash())//to use flash message
 app.use(session({
+    //we initialize sessions, and set it an id
     genid: (request) => {
         console.log('Inside the session middleware')
-        console.log(request.sessionID)
+        console.log(request.sessionID)//we display this id on console, to check we have different users
         return uuidv4() // use UUIDs for session IDs
       },
       resave: false,
@@ -22,14 +23,15 @@ app.use(session({
       'secret': '343ji43j4n3jn4jk3n'
 }));
 
+//To be able to retrieve data from forms
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json()); // parse form data client
 
 
-app.set('views', __dirname + '/views');
-app.set('view engine', ejs);
+app.set('views', __dirname + '/views');//say to our app where are our views
+app.set('view engine', ejs);//we'll use ejs for our views
 
-app.use('/',routing);
+app.use('/',routing);// we attach the routing to our app
 
 
 app.listen(3000, () => {
