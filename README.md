@@ -1,13 +1,15 @@
 # Advanced Internet Applications – laboratory - Node.js
 
-**Description :** The aim of the exercice was to write a online store of Disney movies by using Node.js.  
+**Description :** The aim of the exercice was to write a online store of Disney movies by using Node.js. Sadly, I forgot to add image to items, but don't worry, the app is almost perfect (well it's my opinion).   
 In the main page, the user can add movies in his basket, then he can consult his basket. In the basket page, the user can : 
 * Remove some movies from his basket
 * Clear his basket
 * Buy all items in his basket
-* Come back to the main page
+* Come back to the main page   
+
 Of course, there are some constraints :
-* If another user buy one items the user selected while he was selecting items, the item won't be display in the basket, and we'll display a flash message to say that one product has already been bought by someone else.
+
+* If another user buy one items the user selected while he was selecting items, the item won't be display in the basket, and we'll display a flash message to say that one movie has already been bought by someone else.
 * If 2 users are on the basket page, with some same items, the first one who click on "buy everything" will have all items. For the second one, we will redirect him to basket page with a message to say that one of his items has already been bought (of course, all others items stay in the basket).
 * It's all, I don't think I have forgot something.
 
@@ -44,3 +46,13 @@ var connection = mysql.createConnection({
 ```
 Now, everythings is set, you can run the app.
 
+## Problems met (almost all resolved)
+* The first problem I met was the session. In the begining, I set a new variable **const session = session()** such as php, and thinking it will create a new session for each user. But no, it was only one session for all users. I didn't read the doc before, and instead to read it, I passed many time on internet, convinced my method was the good one. It's only after many hours that I read the documentation, and understood I didn't manipulate the session properly. Honnestly, why do you need to pass by the request to access to session ? Maybe You notified I generate an id to session and then display it on console, but it's not very useful, it was just to check we have different session for each user.
+* The second problem I met was the  **asynchronous functions**. As a big php user, I always first retrieved the data from database, and then passed it to the view. But here, because it didn't wait the function to retrieve the data, it directly displayed a view without the data. So I transform my synchronous functions asynchronous functions to be able to display the view with the data
+* Finally, some stupids syntax errors (sadly it's this problem which take me most time to solve...).
+
+## Conclusion
+
+In this exercice, I learned to create a project from scratch with NodeJs, and I saw there is a lot of advantadges (or disadvantadges) with the asynchronous functions. I think it must be great to use it  with single page app.  
+Honnestly, I am happy of this laboratory because I have to learn NodeJs for my summer internship.    
+I thank my teacher, sir Piernik, for this exercice and new skills acquired.
