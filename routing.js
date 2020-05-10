@@ -198,7 +198,7 @@ router.post('/buyEverything',(request, response)=>{
                     if(rows.length !== 0)//if there is item(maybe the another user bought everything)
                     {
                         rows.map(row=>{
-                            request.session.selectedMovies.push(row.id);
+                            request.session.selectedMovies.push(String(row.id));
                         })
                         //Then we display the basket page, with an appropriate message
                         request.flash('notify', 'Oups ! One of your items has already been bought by someone else... Are you sure to continue ? Be quick before someone else buy one your other selected item')
