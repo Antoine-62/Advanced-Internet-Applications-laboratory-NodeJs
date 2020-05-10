@@ -1,0 +1,44 @@
+<%- include('include/header'); -%>
+<script src="/AddMovie.js"></script>
+<% var messages = getMessages() %>
+<% if(messages.notify){ %>
+    <div class="alert alert-info" role="alert">
+        <%= messages.notify %>
+    </div>
+  <% } %>
+<% if (movies.length > 0) {%>
+    <table class="table table-hovered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Descritpion</th>
+                <th>Avaibility</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% movies.forEach((movie) => { %>
+                <tr id=<%= movie.id %>>
+                    <td><%= movie.id %></td>
+                    <td><%= movie.name %></td>
+                    <td><%= movie.description %></td>
+                    <td id=<%= movie.id %>><% if (selectedMovies.indexOf(String(movie.id)) !== -1) {%>
+                            <p>This movies has already been added</p>
+                        <% } else { %>
+                            <button type="button" class="btn btn-primary">Add to the Basket</button>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <form action="/myBasket" method="get">
+        <button class="btn btn-primary">Watch my Basket</button>
+    </form>
+<% } else { %>
+    <p class="text-center">No movies found. Go <a href="/add" >here</a> to add players.</p>
+<% } %>
+
+</body>
+
+</html>

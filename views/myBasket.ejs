@@ -1,0 +1,46 @@
+<%- include('include/header'); -%>
+<script src="/RemoveMovie.js"></script>
+<h2>My Basket</h2>
+<% var messages = getMessages() %>
+<% if(messages.notify){ %>
+    <div class="alert alert-info" role="alert">
+        <%= messages.notify %>
+    </div>
+  <% } %>
+<% if (movies.length > 0) {%>
+    <table class="table table-hovered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Descritpion</th>
+                <th>Remove item</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% movies.forEach((movie) => { %>
+                <tr id=tr<%= movie.id %>>
+                    <td><%= movie.id %></td>
+                    <td><%= movie.name %></td>
+                    <td><%= movie.description %></td>
+                    <td><button class="buttonR btn btn-primary" id=<%= movie.id %> >Remove it</button>
+                       
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+    <div class="text-center"> 
+    <form action="/RemoveAll" method="POST">
+        <button class="btn btn-primary">Clear all my Basket</button>
+    </form>
+    <form action="/buyEverything" method="POST">
+        <button class="btn btn-primary">Buy everything now before it's too late (and it's free!!)</button>
+    </form>
+    <form action="/" method="get">
+        <button class="btn btn-primary">Come back to movies list</button>
+    </form>
+    </div>
+<% } else { %>
+    <p class="text-center">No movies found. Go <a href="/" >here</a> to add Movies.</p>
+<% } %>
